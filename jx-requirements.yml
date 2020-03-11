@@ -1,35 +1,86 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  chartRepository: http://bucketrepo/bucketrepo/charts/
+  clusterName: cldntventr-dev
+  devEnvApprovers:
+  - patrickleet
+  environmentGitOwner: cloudnativeentrepreneur
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: cldntventr
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: us-east4-b
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    cloud_dns_secret_name: external-dns-gcp-sa
+    domain: cloudnativeentrepreneur.dev
+    externalDNS: true
+    namespaceSubDomain: -jx.
+    tls:
+      email: pat@cloudnativeentrepreneur.com
+      enabled: true
+      production: true
+  key: dev
+  repository: environment-cldntventr-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-cldntventr-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-cldntventr-production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: cloudnativeentrepreneur.dev
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: pat@cloudnativeentrepreneur.com
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+repository: bucketrepo
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://cldntventr-dev-backup
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://cldntventr-dev-logs
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://cldntventr-dev-reports
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://cldntventr-dev-repository
+terraform: true
+vault: {}
+velero:
+  namespace: velero
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: "master"
+  ref: v1.0.387
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow

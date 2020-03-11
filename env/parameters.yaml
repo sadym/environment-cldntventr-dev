@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:cldntventr-dev/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: pat+microsvc-bot@patscott.io
+  token: vault:cldntventr-dev/pipelineUser:token
+  username: microsvc-bot
+prow:
+  hmacToken: vault:cldntventr-dev/prow:hmacToken
