@@ -1,5 +1,5 @@
 autoUpdate:
-  enabled: false
+  enabled: true
   schedule: ""
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
