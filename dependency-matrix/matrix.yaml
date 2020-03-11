@@ -5,3 +5,9 @@ dependencies:
   url: https://github.com/CloudNativeEntrepreneur/go-quickstart.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: CloudNativeEntrepreneur
+  repo: node-quickstart
+  url: https://github.com/CloudNativeEntrepreneur/node-quickstart.git
+  version: ""
+  versionURL: ""
