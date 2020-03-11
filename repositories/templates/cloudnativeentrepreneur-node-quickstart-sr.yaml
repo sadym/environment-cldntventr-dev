@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: CloudNativeEntrepreneur
+    provider: github
+    repository: node-quickstart
+  name: cloudnativeentrepreneur-node-quickstart
+spec:
+  description: Imported application for CloudNativeEntrepreneur/node-quickstart
+  httpCloneURL: https://github.com/CloudNativeEntrepreneur/node-quickstart.git
+  org: CloudNativeEntrepreneur
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: node-quickstart
+  scheduler:
+    kind: ""
+    name: ""
+  url: https://github.com/CloudNativeEntrepreneur/node-quickstart.git
