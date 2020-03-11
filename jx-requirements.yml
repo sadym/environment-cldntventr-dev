@@ -78,7 +78,7 @@ terraform: true
 vault: {}
 velero:
   namespace: velero
-  schedule: ""
+  schedule: "0 2 * * *"
   ttl: ""
 versionStream:
   ref: v1.0.387
