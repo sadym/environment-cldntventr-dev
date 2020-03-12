@@ -17,3 +17,9 @@ dependencies:
   url: https://github.com/CloudNativeEntrepreneur/content.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: CloudNativeEntrepreneur
+  repo: www
+  url: https://github.com/CloudNativeEntrepreneur/www.git
+  version: ""
+  versionURL: ""
