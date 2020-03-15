@@ -23,3 +23,9 @@ dependencies:
   url: https://github.com/CloudNativeEntrepreneur/www.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: CloudNativeEntrepreneur
+  repo: demo-app
+  url: https://github.com/CloudNativeEntrepreneur/demo-app.git
+  version: ""
+  versionURL: ""
