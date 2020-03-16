@@ -11,3 +11,7 @@ tekton:
 dex:
   certs:
     newApi: true
+
+bucketrepo:
+  cache:
+    base_dir: ./
