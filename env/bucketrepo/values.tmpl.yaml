@@ -13,3 +13,5 @@ config:
   auth:
     username: "{{ .Parameters.adminUser.username }}"
     password: "{{ .Parameters.adminUser.password }}"
+  cache:
+    dir: ./
