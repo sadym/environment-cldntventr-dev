@@ -21,3 +21,6 @@ dependencies:
 - name: jx-app-replicator
   repository: http://chartmuseum.jenkins-x.io
   version: 1.0.16
+- name: jx-app-ui
+  repository: http://chartmuseum.jenkins-x.io
+  version: 0.1.49
