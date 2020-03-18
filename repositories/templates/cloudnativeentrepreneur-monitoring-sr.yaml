@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: CloudNativeEntrepreneur
+    provider: github
+    repository: monitoring
+  name: cloudnativeentrepreneur-monitoring
+spec:
+  description: Imported application for CloudNativeEntrepreneur/monitoring
+  httpCloneURL: https://github.com/CloudNativeEntrepreneur/monitoring.git
+  org: CloudNativeEntrepreneur
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: monitoring
+  scheduler:
+    kind: ""
+    name: ""
+  url: git@github.com:CloudNativeEntrepreneur/monitoring.git

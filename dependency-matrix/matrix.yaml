@@ -23,3 +23,9 @@ dependencies:
   url: https://github.com/CloudNativeEntrepreneur/dev-cluster-monitoring.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: CloudNativeEntrepreneur
+  repo: monitoring
+  url: https://github.com/CloudNativeEntrepreneur/monitoring.git
+  version: ""
+  versionURL: ""
