@@ -79,7 +79,6 @@ coreDns:
 defaultRules:
   rules:
     kubernetesResources: false
-    customKubernetesResources: true
 kubelet:
   enabled: true
   serviceMonitor:
