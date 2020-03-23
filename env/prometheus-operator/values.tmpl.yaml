@@ -60,6 +60,20 @@ alertmanager:
         icon_emoji: '{{`{{ template "slack.default.iconemoji" . }}`}}'
         icon_url: '{{`{{ template "slack.default.iconurl" . }}`}}'
         send_resolved: true
+  ingress:
+    enabled: true
+    hosts:
+      - alertmanager{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
+{{- if .Requirements.ingress.tls.enabled }}
+    tls:
+    - hosts:
+      - alertmanager{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
+{{- if .Requirements.ingress.tls.production }}
+      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
+{{- else }}
+      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
+{{- end }}
+{{- end }}
 coreDns:
   enabled: false
 kubelet:
@@ -85,6 +99,20 @@ prometheusOperator:
   tlsProxy:
     enabled: false
 prometheus:
+  ingress:
+    enabled: true
+    hosts:
+      - prometheus{{ .Requirements.ingress.namespaceSubDomain | default "-jx." }}{{ .Requirements.ingress.domain }}
+{{- if .Requirements.ingress.tls.enabled }}
+    tls:
+    - hosts:
+      - prometheus{{ .Requirements.ingress.namespaceSubDomain | default "-jx." }}{{ .Requirements.ingress.domain }}
+{{- if .Requirements.ingress.tls.production }}
+      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
+{{- else }}
+      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
+{{- end }}
+{{- end }}
   prometheusSpec:
     containers:
       - name: stackdriver-sidecar
