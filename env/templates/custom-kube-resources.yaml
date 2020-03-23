@@ -1,18 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ printf "%s-%s" (include "prometheus-operator.fullname" .) "custom-kubernetes-resources" | trunc 63 | trimSuffix "-" }}
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app: {{ template "prometheus-operator.name" . }}
-{{ include "prometheus-operator.labels" . | indent 4 }}
-{{- if .Values.defaultRules.labels }}
-{{ toYaml .Values.defaultRules.labels | indent 4 }}
-{{- end }}
-{{- if .Values.defaultRules.annotations }}
-  annotations:
-{{ toYaml .Values.defaultRules.annotations | indent 4 }}
-{{- end }}
+  name: prometheus-custom-kubernetes-resources
 spec:
   groups:
   - name: kubernetes-resources
