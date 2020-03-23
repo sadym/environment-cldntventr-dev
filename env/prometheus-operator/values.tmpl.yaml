@@ -25,12 +25,9 @@ alertmanager:
       - api_url: vault:alertmanager:slackUrl
         color: >-
           {{`
-          '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+          {{ if eq .Status "firing" }}danger{{ else }}good{{ end }}
           `}}
-        title: >-
-          {{`
-          '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
-          `}}
+        title: '{{`[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification`}}'
         title_link: >-
           {{`
           '{{ template "slack.default.titlelink" . }}'
