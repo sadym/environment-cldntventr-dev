@@ -1,0 +1,113 @@
+alertmanager:
+  config:
+    global: {}
+    inhibit_rules:
+    - source_match:
+        alertname: 'WatchDog'
+      equal: ['prometheus']
+    route:
+      group_by:
+      - alertname
+      - cluster
+      - service
+      group_wait: 10s
+      group_interval: 5m
+      repeat_interval: 24h
+      receiver: slack
+      routes:
+      - receiver: critical
+        match_re:
+          severity: error|critical
+        repeat_interval: 1h
+    receivers:
+    - name: slack
+      slack_configs:
+      - api_url: vault:alertmanager:slackUrl
+        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+        title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
+        title_link: '{{ template "slack.default.titlelink" . }}'
+        pretext: '{{ .CommonAnnotations.summary }}'
+        text: |-
+          {{ range .Alerts }}
+            {{- if .Annotations.summary }}*Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`{{- end }}
+            *Description:* {{ .Annotations.description }}{{ .Annotations.message }}
+            *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>{{ if or .Annotations.runbook .Annotations.runbook_url }} *Runbook:* <{{ .Annotations.runbook }}{{ .Annotations.runbook_url }}|:spiral_note_pad:>{{ end }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+        fallback: '{{ template "slack.default.fallback" . }}'
+        icon_emoji: '{{ template "slack.default.iconemoji" . }}'
+        icon_url: '{{ template "slack.default.iconurl" . }}'
+        send_resolved: true
+    - name: critical
+      slack_configs:
+      - api_url: vault:alertmanager:slackCriticalUrl
+        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+        title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
+        title_link: '{{ template "slack.default.titlelink" . }}'
+        pretext: '{{ .CommonAnnotations.summary }}'
+        text: |-
+          {{ range .Alerts }}
+            {{- if .Annotations.summary }}*Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`{{- end }}
+            *Description:* {{ .Annotations.description }}{{ .Annotations.message }}
+            *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>{{ if or .Annotations.runbook .Annotations.runbook_url }} *Runbook:* <{{ .Annotations.runbook }}{{ .Annotations.runbook_url }}|:spiral_note_pad:>{{ end }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+        fallback: '{{ template "slack.default.fallback" . }}'
+        icon_emoji: '{{ template "slack.default.iconemoji" . }}'
+        icon_url: '{{ template "slack.default.iconurl" . }}'
+        send_resolved: true
+coreDns:
+  enabled: false
+kubelet:
+  enabled: true
+  serviceMonitor:
+    https: false
+kubeControllerManager:
+  enabled: false
+kubeDns:
+  enabled: true
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeTargetVersionOverride: "1.15.999"
+prometheusOperator:
+  admissionWebhooks:
+    enabled: false
+    patch:
+      enabled: false
+  tlsProxy:
+    enabled: false
+prometheus:
+  prometheusSpec:
+    containers:
+      - name: stackdriver-sidecar
+        image: gcr.io/stackdriver-prometheus/stackdriver-prometheus-sidecar:0.7.3
+        imagePullPolicy: Always
+        args:
+        - "--stackdriver.project-id=cldntventr"
+        - "--prometheus.wal-directory=/prometheus/wal"
+        - "--stackdriver.kubernetes.location=us-east4-b"
+        - "--stackdriver.kubernetes.cluster-name=cldntventr-dev"
+        ports:
+        - name: sidecar
+          containerPort: 9091
+        volumeMounts:
+        - mountPath: /prometheus
+          name: prometheus-jx-prometheus-operator-prometheus-db
+          subPath: prometheus-db
+    storageSpec:
+      volumeClaimTemplate:
+        metadata:
+          name: prometheus
+        spec:
+          storageClassName: ssd
+          resources:
+            requests:
+              storage: 100Gi
