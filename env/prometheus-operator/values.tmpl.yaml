@@ -140,10 +140,10 @@ prometheus:
         ports:
         - name: sidecar
           containerPort: 9091
-        # volumeMounts:
-        # - mountPath: /prometheus
-        #   name: prometheus-jx-prometheus-operator-prometheus-db
-        #   subPath: prometheus-db
+        volumeMounts:
+        - mountPath: /prometheus
+          name: prometheus-jenkins-x-prometheus-opera-prometheus-db
+          subPath: prometheus-db
     storageSpec:
       volumeClaimTemplate:
         metadata:
