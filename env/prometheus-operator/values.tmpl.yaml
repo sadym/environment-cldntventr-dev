@@ -76,6 +76,10 @@ alertmanager:
 {{- end }}
 coreDns:
   enabled: false
+defaultRules:
+  rules:
+    kubernetesResources: false
+    customKubernetesResources: true
 kubelet:
   enabled: true
   serviceMonitor:
