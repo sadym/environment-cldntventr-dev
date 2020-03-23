@@ -2,6 +2,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: prometheus-custom-kubernetes-resources
+  labels:
+    app: prometheus-operator
+    release: jenkins-x
 spec:
   groups:
   - name: kubernetes-resources
