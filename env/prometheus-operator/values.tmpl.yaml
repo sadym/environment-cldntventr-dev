@@ -23,11 +23,24 @@ alertmanager:
     - name: slack
       slack_configs:
       - api_url: vault:alertmanager:slackUrl
-        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
-        title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
-        title_link: '{{ template "slack.default.titlelink" . }}'
-        pretext: '{{ .CommonAnnotations.summary }}'
+        color: >-
+          {{`
+          '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+          `}}
+        title: >-
+          {{`
+          '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
+          `}}
+        title_link: >-
+          {{`
+          '{{ template "slack.default.titlelink" . }}'
+          `}}
+        pretext: >-
+          {{`
+          '{{ .CommonAnnotations.summary }}'
+          `}}
         text: |-
+          {{`
           {{ range .Alerts }}
             {{- if .Annotations.summary }}*Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`{{- end }}
             *Description:* {{ .Annotations.description }}{{ .Annotations.message }}
@@ -36,18 +49,41 @@ alertmanager:
             {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
             {{ end }}
           {{ end }}
-        fallback: '{{ template "slack.default.fallback" . }}'
-        icon_emoji: '{{ template "slack.default.iconemoji" . }}'
-        icon_url: '{{ template "slack.default.iconurl" . }}'
+          `}}
+        fallback: >-
+          {{`
+          '{{ template "slack.default.fallback" . }}'
+          `}}
+        icon_emoji: >-
+          {{`
+          '{{ template "slack.default.iconemoji" . }}'
+          `}}
+        icon_url: >-
+          {{`
+          '{{ template "slack.default.iconurl" . }}'
+          `}}
         send_resolved: true
     - name: critical
       slack_configs:
       - api_url: vault:alertmanager:slackCriticalUrl
-        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
-        title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
-        title_link: '{{ template "slack.default.titlelink" . }}'
-        pretext: '{{ .CommonAnnotations.summary }}'
+        color: >-
+          {{`
+          '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+          `}}
+        title: >-
+          {{`
+          '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
+          `}}
+        title_link: >-
+          {{`
+          '{{ template "slack.default.titlelink" . }}'
+          `}}
+        pretext: >-
+          {{`
+          '{{ .CommonAnnotations.summary }}'
+          `}}
         text: |-
+          {{`
           {{ range .Alerts }}
             {{- if .Annotations.summary }}*Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`{{- end }}
             *Description:* {{ .Annotations.description }}{{ .Annotations.message }}
@@ -56,9 +92,19 @@ alertmanager:
             {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
             {{ end }}
           {{ end }}
-        fallback: '{{ template "slack.default.fallback" . }}'
-        icon_emoji: '{{ template "slack.default.iconemoji" . }}'
-        icon_url: '{{ template "slack.default.iconurl" . }}'
+          `}}
+        fallback: >-
+          {{`
+          '{{ template "slack.default.fallback" . }}'
+          `}}
+        icon_emoji: >-
+          {{`
+          '{{ template "slack.default.iconemoji" . }}'
+          `}}
+        icon_url: >-
+          {{`
+          '{{ template "slack.default.iconurl" . }}'
+          `}}
         send_resolved: true
 coreDns:
   enabled: false
