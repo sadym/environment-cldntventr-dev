@@ -102,11 +102,11 @@ prometheus:
   ingress:
     enabled: true
     hosts:
-      - prometheus{{ .Requirements.ingress.namespaceSubDomain | default "-jx." }}{{ .Requirements.ingress.domain }}
+      - prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
 {{- if .Requirements.ingress.tls.enabled }}
     tls:
     - hosts:
-      - prometheus{{ .Requirements.ingress.namespaceSubDomain | default "-jx." }}{{ .Requirements.ingress.domain }}
+      - prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
 {{- if .Requirements.ingress.tls.production }}
       secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
 {{- else }}
@@ -130,6 +130,7 @@ prometheus:
         - mountPath: /prometheus
           name: prometheus-jenkins-x-prometheus-opera-prometheus-db
           subPath: prometheus-db
+    externalUrl: https://prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
     storageSpec:
       volumeClaimTemplate:
         metadata:
