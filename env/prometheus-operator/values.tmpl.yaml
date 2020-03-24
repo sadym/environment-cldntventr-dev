@@ -122,10 +122,10 @@ prometheus:
         image: gcr.io/stackdriver-prometheus/stackdriver-prometheus-sidecar:0.7.3
         imagePullPolicy: Always
         args:
-        - "--stackdriver.project-id=cldntventr"
+        - "--stackdriver.project-id={{ .Requirements.cluster.project }}"
         - "--prometheus.wal-directory=/prometheus/wal"
-        - "--stackdriver.kubernetes.location=us-east4-b"
-        - "--stackdriver.kubernetes.cluster-name=cldntventr-dev"
+        - "--stackdriver.kubernetes.location={{ .Requirements.cluster.zone }}"
+        - "--stackdriver.kubernetes.cluster-name={{ .Requirements.cluster.clusterName }}"
         ports:
         - name: sidecar
           containerPort: 9091
