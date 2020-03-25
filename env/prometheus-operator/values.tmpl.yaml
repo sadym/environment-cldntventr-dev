@@ -1,10 +1,6 @@
 alertmanager:
   config:
     global: {}
-    inhibit_rules:
-    - source_match:
-        alertname: 'WatchDog'
-      equal: ['prometheus']
     route:
       group_by:
       - alertname
@@ -15,11 +11,15 @@ alertmanager:
       repeat_interval: 24h
       receiver: slack
       routes:
+      - receiver: blackhole
+        match:
+          alertname: Watchdog
       - receiver: critical
         match_re:
           severity: error|critical
         repeat_interval: 1h
     receivers:
+    - name: blackhole
     - name: slack
       slack_configs:
       - api_url: vault:alertmanager:slackUrl
