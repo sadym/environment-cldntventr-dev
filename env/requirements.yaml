@@ -24,6 +24,9 @@ dependencies:
 - name: jx-app-ui
   repository: http://chartmuseum.jenkins-x.io
   version: 0.1.49
+- name: prometheus-adapter
+  version: 2.2.0
+  repository: https://kubernetes-charts.storage.googleapis.com/
 - name: prometheus-operator
   version: 8.12.3
   repository: https://kubernetes-charts.storage.googleapis.com/

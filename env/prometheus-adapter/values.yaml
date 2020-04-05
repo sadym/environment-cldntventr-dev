@@ -1,0 +1,3 @@
+prometheus:
+  url: http://jenkins-x-prometheus-opera-prometheus.jx.svc
+  port: 9090
