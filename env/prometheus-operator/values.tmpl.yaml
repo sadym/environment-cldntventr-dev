@@ -79,6 +79,8 @@ coreDns:
 defaultRules:
   rules:
     kubernetesResources: false
+grafana:
+  enabled: false
 kubelet:
   enabled: true
   serviceMonitor:
