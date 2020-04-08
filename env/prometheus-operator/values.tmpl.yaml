@@ -117,29 +117,29 @@ prometheus:
 {{- end }}
 {{- end }}
   prometheusSpec:
-    containers:
-      - name: stackdriver-sidecar
-        image: gcr.io/stackdriver-prometheus/stackdriver-prometheus-sidecar:0.7.3
-        imagePullPolicy: Always
-        args:
-        - "--stackdriver.project-id={{ .Requirements.cluster.project }}"
-        - "--prometheus.wal-directory=/prometheus/wal"
-        - "--stackdriver.kubernetes.location={{ .Requirements.cluster.zone }}"
-        - "--stackdriver.kubernetes.cluster-name={{ .Requirements.cluster.clusterName }}"
-        ports:
-        - name: sidecar
-          containerPort: 9091
-        volumeMounts:
-        - mountPath: /prometheus
-          name: prometheus-jenkins-x-prometheus-opera-prometheus-db
-          subPath: prometheus-db
+    # containers:
+    #   - name: stackdriver-sidecar
+    #     image: gcr.io/stackdriver-prometheus/stackdriver-prometheus-sidecar:0.7.3
+    #     imagePullPolicy: Always
+    #     args:
+    #     - "--stackdriver.project-id={{ .Requirements.cluster.project }}"
+    #     - "--prometheus.wal-directory=/prometheus/wal"
+    #     - "--stackdriver.kubernetes.location={{ .Requirements.cluster.zone }}"
+    #     - "--stackdriver.kubernetes.cluster-name={{ .Requirements.cluster.clusterName }}"
+    #     ports:
+    #     - name: sidecar
+    #       containerPort: 9091
+    #     volumeMounts:
+    #     - mountPath: /prometheus
+    #       name: prometheus-jenkins-x-prometheus-opera-prometheus-db
+    #       subPath: prometheus-db
     externalUrl: https://prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
-    storageSpec:
-      volumeClaimTemplate:
-        metadata:
-          name: prometheus
-        spec:
-          storageClassName: ssd
-          resources:
-            requests:
-              storage: 100Gi
+    # storageSpec:
+    #   volumeClaimTemplate:
+    #     metadata:
+    #       name: prometheus
+    #     spec:
+    #       storageClassName: ssd
+    #       resources:
+    #         requests:
+    #           storage: 100Gi
