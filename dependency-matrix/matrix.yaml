@@ -17,3 +17,9 @@ dependencies:
   url: https://github.com/CloudNativeEntrepreneur/demo-app.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: CloudNativeEntrepreneur
+  repo: keycloak-theme
+  url: https://github.com/CloudNativeEntrepreneur/keycloak-theme.git
+  version: ""
+  versionURL: ""
