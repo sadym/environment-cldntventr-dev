@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: CloudNativeEntrepreneur
+    provider: github
+    repository: keycloak-theme
+  name: cloudnativeentrepreneur-keycloak-theme
+spec:
+  description: Imported application for CloudNativeEntrepreneur/keycloak-theme
+  httpCloneURL: https://github.com/CloudNativeEntrepreneur/keycloak-theme.git
+  org: CloudNativeEntrepreneur
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: keycloak-theme
+  scheduler:
+    kind: ""
+    name: ""
+  url: git@github.com:CloudNativeEntrepreneur/keycloak-theme.git

@@ -19,7 +19,7 @@ dependencies:
   versionURL: ""
 - host: github.com
   owner: CloudNativeEntrepreneur
-  repo: auth
-  url: https://github.com/CloudNativeEntrepreneur/auth.git
+  repo: keycloak-theme
+  url: https://github.com/CloudNativeEntrepreneur/keycloak-theme.git
   version: ""
   versionURL: ""
