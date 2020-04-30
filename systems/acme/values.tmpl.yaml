@@ -18,3 +18,5 @@ certmanager:
   email:  "{{ .Requirements.ingress.tls.email }}"
   enabled: {{ .Requirements.ingress.tls.enabled }}
 {{- end }}
+
+prodDomain: cloudnativeentrepreneur.com
