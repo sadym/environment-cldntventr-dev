@@ -16,6 +16,8 @@ spec:
         dnsNames:
         - "*.{{ .Values.cluster.domain }}"
         - "{{ .Values.cluster.domain }}"
+        - "*.{{ .Values.prodDomain }}"
+        - "{{ .Values.prodDomain }}"
       # ACME DNS-01 provider configurations
       dns01:
 {{- if eq .Values.cluster.provider "gke" }}
