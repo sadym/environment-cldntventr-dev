@@ -46,8 +46,8 @@ environments:
     namespaceSubDomain: ""
     tls:
       email: pat@cloudnativeentrepreneur.com
-      enabled: false
-      production: false
+      enabled: true
+      production: true
   key: production
   repository: environment-cldntventr-production
 gitops: true
