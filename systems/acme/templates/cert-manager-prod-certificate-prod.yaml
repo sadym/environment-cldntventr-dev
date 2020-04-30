@@ -4,16 +4,16 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: "tls-{{ "{{ .Values.prodDomain }}" | replace "." "-" }}-p"
+  name: "tls-{{ .Values.prodDomain | replace "." "-" }}-p"
   labels:
     jenkins.io/letsencrypt-service: production
 spec:
-  secretName: "tls-{{ "{{ .Values.prodDomain }}" | replace "." "-" }}-p"
+  secretName: "tls-{{ .Values.prodDomain | replace "." "-" }}-p"
   issuerRef:
     name: letsencrypt-prod
-  commonName: "*.{{ "{{ .Values.prodDomain }}" }}"
+  commonName: "*.{{ .Values.prodDomain }}"
   dnsNames:
-  - "*.{{ "{{ .Values.prodDomain }}" }}"
+  - "*.{{ .Values.prodDomain }}"
 {{- end }}
 {{- end }}
 {{- end }}
