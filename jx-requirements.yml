@@ -40,11 +40,12 @@ environments:
   key: staging
   repository: environment-cldntventr-staging
 - ingress:
-    domain: ""
-    externalDNS: false
+    cloud_dns_secret_name: external-dns-gcp-sa
+    domain: cloudnativeentrepreneur.com
+    externalDNS: true
     namespaceSubDomain: ""
     tls:
-      email: ""
+      email: pat@cloudnativeentrepreneur.com
       enabled: false
       production: false
   key: production
