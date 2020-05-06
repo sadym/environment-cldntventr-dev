@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: alertmanager
+spec:
+  rules:
+  - host: alertmanager-jx.cloudnativeentrepreneur.dev
+    http:
+      paths:
+      - backend:
+          serviceName: jenkins-x-prometheus-opera-alertmanager
+          servicePort: 3000
+        path: /
+  tls:
+  - hosts:
+    - alertmanager-jx.cloudnativeentrepreneur.dev
+    secretName: tls-cloudnativeentrepreneur-dev-p
