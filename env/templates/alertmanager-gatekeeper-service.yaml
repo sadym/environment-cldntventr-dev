@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertmanager-gatekeeper
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    alertmanager: jenkins-x-prometheus-opera-alertmanager
+    app: alertmanager
+  sessionAffinity: None
+  type: ClusterIP

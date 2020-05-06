@@ -8,7 +8,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: jenkins-x-prometheus-opera-alertmanager
+          serviceName: alertmanager-gatekeeper
           servicePort: 3000
         path: /
   tls:

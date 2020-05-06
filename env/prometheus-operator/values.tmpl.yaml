@@ -97,12 +97,6 @@ alertmanager:
 # {{- end }}
   ingress:
     enabled: false
-  service:
-    additionalPorts:
-      - name: http
-        port: 80
-        protocol: TCP
-        targetPort: 3000
 coreDns:
   enabled: false
 defaultRules:
