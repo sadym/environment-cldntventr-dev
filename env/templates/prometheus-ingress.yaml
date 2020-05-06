@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus
+spec:
+  rules:
+  - host: prometheus-jx.cloudnativeentrepreneur.dev
+    http:
+      paths:
+      - backend:
+          serviceName: jenkins-x-prometheus-opera-prometheus
+          servicePort: 3000
+        path: /
+  tls:
+  - hosts:
+    - prometheus-jx.cloudnativeentrepreneur.dev
+    secretName: tls-cloudnativeentrepreneur-dev-p

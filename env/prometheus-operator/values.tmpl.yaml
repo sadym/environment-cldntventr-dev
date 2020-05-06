@@ -122,6 +122,8 @@ prometheus:
 #       secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
 # {{- end }}
 # {{- end }}
+  ingress:
+    enabled: false
   service:
     additionalPorts:
       - name: http
