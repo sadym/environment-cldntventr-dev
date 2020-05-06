@@ -104,30 +104,35 @@ prometheusOperator:
   tlsProxy:
     enabled: false
 prometheus:
-  ingress:
-    enabled: true
-    hosts:
-      - prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
-    paths:
-      - path: /
-        backend:
-          servicePort: 3000
-{{- if .Requirements.ingress.tls.enabled }}
-    tls:
-    - hosts:
-      - prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
-{{- if .Requirements.ingress.tls.production }}
-      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
-{{- else }}
-      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
-{{- end }}
-{{- end }}
+#   ingress:
+#     enabled: true
+#     hosts:
+#       - prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
+#     paths:
+#       - path: /
+#         backend:
+#           servicePort: 3000
+# {{- if .Requirements.ingress.tls.enabled }}
+#     tls:
+#     - hosts:
+#       - prometheus{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
+# {{- if .Requirements.ingress.tls.production }}
+#       secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
+# {{- else }}
+#       secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
+# {{- end }}
+# {{- end }}
   service:
     additionalPorts:
       - name: http
         port: 80
         protocol: TCP
         targetPort: 3000
+    annotations:
+      fabric8.io/expose: "true"
+      fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
+      fabric8.io/ingress.name: "prometheus"
+      fabric8.io/exposePort: 3000
   prometheusSpec:
     containers:
       - image: quay.io/keycloak/keycloak-gatekeeper:9.0.3
