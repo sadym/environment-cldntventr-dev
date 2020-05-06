@@ -1,4 +1,25 @@
 alertmanager:
+  alertmanagerSpec:
+    containers:
+      - image: quay.io/keycloak/keycloak-gatekeeper:9.0.3
+        name: gatekeeper-sidecar
+        ports:
+        - containerPort: 3000
+        env:
+          - name: KEYCLOAK_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: dev
+                key: secret
+        args:
+        - --resources=uri=/*
+        - --discovery-url=https://auth.cloudnativeentrepreneur.com/auth/realms/dev
+        - --client-id=dev
+        - --client-secret=$(KEYCLOAK_CLIENT_SECRET)
+        - --listen=0.0.0.0:3000 # listen on all interfaces
+        - --enable-logging=true
+        - --enable-json-logging=true
+        - --upstream-url=http://127.0.0.1:9093 # To connect with the main container's port
   config:
     global: {}
     route:
@@ -60,20 +81,22 @@ alertmanager:
         icon_emoji: '{{`{{ template "slack.default.iconemoji" . }}`}}'
         icon_url: '{{`{{ template "slack.default.iconurl" . }}`}}'
         send_resolved: true
+#   ingress:
+#     enabled: true
+#     hosts:
+#       - alertmanager{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
+# {{- if .Requirements.ingress.tls.enabled }}
+#     tls:
+#     - hosts:
+#       - alertmanager{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
+# {{- if .Requirements.ingress.tls.production }}
+#       secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
+# {{- else }}
+#       secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
+# {{- end }}
+# {{- end }}
   ingress:
-    enabled: true
-    hosts:
-      - alertmanager{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
-{{- if .Requirements.ingress.tls.enabled }}
-    tls:
-    - hosts:
-      - alertmanager{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}
-{{- if .Requirements.ingress.tls.production }}
-      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-p"
-{{- else }}
-      secretName: "tls-{{ .Requirements.ingress.domain | replace "." "-" }}-s"
-{{- end }}
-{{- end }}
+    enabled: false
 coreDns:
   enabled: false
 defaultRules:
