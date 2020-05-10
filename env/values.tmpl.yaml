@@ -11,3 +11,6 @@ tekton:
 dex:
   certs:
     newApi: true
+
+termination:
+  slack: vault:alertmanager:slackUrl
