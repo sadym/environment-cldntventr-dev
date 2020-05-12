@@ -4,7 +4,7 @@ pipelineConfig:
     pullRequest:
       pipeline:
         agent:
-          image: gcr.io/jenkinsxio/builder-go:2.0.1245-582
+          image: gcr.io/jenkinsxio/builder-go:2.1.32-662
         stages:
         - name: pr-checks
           options:
@@ -38,7 +38,7 @@ pipelineConfig:
     release:
       pipeline:
         agent:
-          image: gcr.io/jenkinsxio/builder-go:2.0.1245-582
+          image: gcr.io/jenkinsxio/builder-go:2.1.32-662
         environment:
         - name: DEPLOY_NAMESPACE
           value: jx
