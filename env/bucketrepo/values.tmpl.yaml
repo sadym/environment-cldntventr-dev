@@ -17,4 +17,5 @@ config:
     dir: ./
 
 env:
-  TEMP_FIX: until gcr.io/jenkinsxio/bucketrepo:0.1.39 is available in version stream
+- name: TEMP_FIX
+  value: until gcr.io/jenkinsxio/bucketrepo:0.1.39 is available in version stream
