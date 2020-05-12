@@ -15,7 +15,3 @@ config:
     password: "{{ .Parameters.adminUser.password }}"
   cache:
     dir: ./
-
-env:
-- name: TEMP_FIX
-  value: until gcr.io/jenkinsxio/bucketrepo:0.1.39 is available in version stream
