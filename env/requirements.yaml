@@ -24,6 +24,9 @@ dependencies:
 - name: jx-app-ui
   repository: http://chartmuseum.jenkins-x.io
   version: 0.1.49
+- name: keycloak-controller
+  repository: https://kiwigrid.github.io
+  version: 0.6.0
 - name: prometheus-adapter
   version: 2.2.0
   repository: https://kubernetes-charts.storage.googleapis.com/
