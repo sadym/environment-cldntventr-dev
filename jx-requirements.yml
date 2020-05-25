@@ -50,6 +50,7 @@ environments:
       production: true
   key: production
   repository: environment-cldntventr-production
+  urlTemplate: '{{.Service}}.{{.Domain}}'
 gitops: true
 ingress:
   cloud_dns_secret_name: external-dns-gcp-sa
