@@ -23,3 +23,9 @@ dependencies:
   url: https://github.com/CloudNativeEntrepreneur/keycloak-theme.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: CloudNativeEntrepreneur
+  repo: people-model
+  url: https://github.com/CloudNativeEntrepreneur/people-model.git
+  version: ""
+  versionURL: ""
