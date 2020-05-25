@@ -7,3 +7,4 @@ requirements.lock
 env/cluster/
 env/parameters.schema.json
 keycloak-controller
+postgres-operator
