@@ -36,3 +36,6 @@ dependencies:
 - name: postgres-operator
   version: 1.5.0
   repository: https://raw.githubusercontent.com/zalando/postgres-operator/master/charts/postgres-operator/
+- name: strimzi-kafka-operator
+  version: 0.18.0
+  repository: https://raw.githubusercontent.com/strimzi/strimzi-kafka-operator/master/helm-charts/
