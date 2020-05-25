@@ -35,4 +35,4 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/
 - name: postgres-operator
   version: 1.5.0
-  repository: https://raw.githubusercontent.com/zalando/postgres-operator/v1.5.0/charts/postgres-operator/
+  repository: https://raw.githubusercontent.com/zalando/postgres-operator/master/charts/postgres-operator/
