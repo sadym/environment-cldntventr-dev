@@ -1,1 +1,1 @@
-watchNamespaces: 'jx-staging,jx-production'
+watchNamespaces: jx-staging,jx-production
