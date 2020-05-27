@@ -67,7 +67,10 @@ spec:
             value: {{ .Values.termination.slack }}
         resources:
           limits:
-            cpu: 150m
+            cpu: 1
+            memory: 30Mi
+          requests:
+            cpu: 10m
             memory: 30Mi
       tolerations:
       # Run regardless of any existing taints.
