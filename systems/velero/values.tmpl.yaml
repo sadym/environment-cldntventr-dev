@@ -13,7 +13,7 @@ velero:
   credentials:
     useSecret: true
     existingSecret: velero-secret
-  snapshotsEnabled: false
+  snapshotsEnabled: true
 {{- if eq .Requirements.cluster.provider "gke" }}
   initContainers:
   - name: velero-plugin-for-gcp
