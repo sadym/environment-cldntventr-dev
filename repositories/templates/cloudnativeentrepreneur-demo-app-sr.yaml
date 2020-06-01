@@ -3,6 +3,9 @@ kind: SourceRepository
 metadata:
   creationTimestamp: null
   labels:
+    jenkins.io/chart-release: repos
+    jenkins.io/namespace: jx
+    jenkins.io/version: "82"
     owner: CloudNativeEntrepreneur
     provider: github
     repository: demo-app
