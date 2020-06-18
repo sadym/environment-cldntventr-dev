@@ -8,3 +8,4 @@ env/cluster/
 env/parameters.schema.json
 keycloak-controller
 postgres-operator
+!env/postgres-operator
