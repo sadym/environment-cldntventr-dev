@@ -25,12 +25,6 @@ dependencies:
   versionURL: ""
 - host: github.com
   owner: CloudNativeEntrepreneur
-  repo: people-model
-  url: https://github.com/CloudNativeEntrepreneur/people-model.git
-  version: ""
-  versionURL: ""
-- host: github.com
-  owner: CloudNativeEntrepreneur
   repo: person-model
   url: https://github.com/CloudNativeEntrepreneur/person-model.git
   version: ""
