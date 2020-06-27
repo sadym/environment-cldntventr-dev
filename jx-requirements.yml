@@ -7,7 +7,7 @@ cluster:
   clusterName: cldntventr-dev
   devEnvApprovers:
   - patrickleet
-  environmentGitOwner: cloudnativeentrepreneur
+  environmentGitOwner: CloudNativeEntrepreneur
   gitKind: github
   gitName: github
   gitServer: https://github.com
