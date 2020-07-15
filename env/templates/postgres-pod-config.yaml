@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-pod-config
+  labels:
+    app: postgres-operator
+data:
+  GOOGLE_APPLICATION_CREDENTIALS: /var/secrets/google/key.json
