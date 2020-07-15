@@ -6,3 +6,8 @@ metadata:
     app: postgres-operator
 data:
   GOOGLE_APPLICATION_CREDENTIALS: /var/secrets/google/key.json
+  USE_WALG_BACKUP: "true"
+  USE_WALG_RESTORE: "true"
+  WALG_GS_PREFIX: gs://cldntventr-dev-psql-wale/spilo/$(SCOPE)
+  CLONE_WALG_GS_PREFIX: gs://cldntventr-dev-psql-wale/spilo/$(CLONE_SCOPE)
+  WALE_BACKUP_THRESHOLD_PERCENTAGE: "100"

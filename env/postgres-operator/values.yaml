@@ -4,5 +4,5 @@ configAwsOrGcp:
   wal_gs_bucket: cldntventr-dev-psql-wale # name of bucket on where to save the WAL-E logs
   gcp_credentials: /var/secrets/google/key.json # combination of the mount path & key in the K8 resource. (i.e. key.json)
 configKubernetes:
-  pod_environment_configmap: "jx/postgres-pod-config"
-  enable_pod_antiaffinity: "true"
+  enable_pod_antiaffinity: true
+  pod_environment_configmap: jx/postgres-pod-config
