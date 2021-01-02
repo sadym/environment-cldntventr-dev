@@ -12,6 +12,10 @@ dependencies:
   condition: lighthouse.enabled
   name: lighthouse
   repository: http://chartmuseum.jenkins-x.io
+- alias: lighthouse-jx
+  condition: lighthouse.enabled
+  name: lighthouse-jx
+  repository: http://chartmuseum.jenkins-x.io
 - alias: bucketrepo
   condition: bucketrepo.enabled
   name: bucketrepo
@@ -28,11 +32,11 @@ dependencies:
   repository: https://kiwigrid.github.io
   version: 0.6.0
 - name: prometheus-adapter
-  version: 2.2.0
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://charts.helm.sh/stable
+  version: 2.5.1
 - name: prometheus-operator
-  version: 8.12.3
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 9.3.2
 - name: postgres-operator
   version: 1.5.0
   repository: https://raw.githubusercontent.com/zalando/postgres-operator/master/charts/postgres-operator/
